@@ -1,0 +1,21 @@
+button[type="submit"] {
+  border-radius: 25px;
+  text-align: center;
+  display: block;
+  margin: 20px auto;
+  width: 100px;
+  height: 50px;
+  font-weight: bold; }
+
+input[type=password]:not(.browser-default), input[type=text]:not(.browser-default) {
+  margin: 20px 0; }
+
+a {
+  display: block; }
+
+.logo {
+  width: 200px;
+  height: 200px; }
+
+.intro {
+  font-size: 30px; }

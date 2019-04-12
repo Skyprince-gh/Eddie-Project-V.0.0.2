@@ -1,0 +1,17 @@
+@import 'variables';
+
+@mixin btn-round($width, $height){
+    width: $width;
+    height: $height;
+    border-radius: ($width / 2);
+    border: none;
+    box-shadow: $shadow2;
+    box-sizing: border-box;
+    margin: 5px;
+    outline: none;
+}
+
+@mixin width-height($value){
+    width: $value;
+    height: $value;
+}

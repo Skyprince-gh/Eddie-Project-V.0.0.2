@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/styles/css/contacts.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <title>Contacts</title>
+</head>
+
+<body>
+    <div class="wrapper animated fadeIn delay-1s">
+        <div class="panel">
+            <a href="/signin"><button id='back'>Back</button></a>
+            <button id='search'>Search</button>
+            <h1 class='page-title'>Contacts</h1>
+            <button id='add'>Add</button>
+        </div>
+
+        <div class="contacts">
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            <% include partials/user-contact %>
+            
+        </div>
+
+</body>
+ <%include partials/libraries %>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WebScockets 101</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="assets/styles/css/chat.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    </head>
+    <body>
+
+        <div id="mario-chat">
+            <div class="panel">
+                <h2 id="handler"> <a href="/signin"> <%=user.username%> </a> </h2>
+            </div> 
+                
+                <div id="chat-window">
+                    <div class="output">
+                        <div class="output-message"> Hello </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-message"> Video </div>
+                    </div>
+                    <div class="output">
+                            <div class="output-message"> Hello </div>
+                        </div>
+                </div>
+                <form class="input-message">
+                    <input id="message" type="text" placeholder="type a message here" />
+                    <button type="submit" id="send"><i class="material-icons">send</i></button>
+                </form>
+        </div>
+
+
+    </body>
+    <% include partials/libraries.ejs %>
+</html>

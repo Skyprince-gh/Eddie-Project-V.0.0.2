@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+.wrapper {
+  width: 40%;
+  margin: 40px auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 850px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+  border-radius: 50px; }
+  .wrapper .panel {
+    color: white;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: fit-content(10%) fit-content(10%) 70% fit-content(10%);
+    grid-template-columns: fit-content(10%) fit-content(10%) 70% fit-content(10%);
+    padding-top: 20px;
+    margin: 0 auto;
+    -webkit-transform: translate(10px, 0%);
+    -ms-transform: translate(10px, 0%);
+    transform: translate(10px, 0%); }
+    .wrapper .panel #search {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      border: none;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 5px;
+      outline: none;
+      background-color: white; }
+    .wrapper .panel #add {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      border: none;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 5px;
+      outline: none;
+      background-color: white; }
+    .wrapper .panel #back {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      border: none;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 5px;
+      outline: none;
+      background-color: white; }
+    .wrapper .panel h1.page-title {
+      margin: 0 auto;
+      text-align: center;
+      color: #5d585a;
+      -webkit-transform: translate(0px, 10px);
+      -ms-transform: translate(0px, 10px);
+      transform: translate(0px, 10px); }
+  .wrapper .contacts {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 40px;
+    color: black; }
+    .wrapper .contacts .user-contact {
+      display: -ms-grid;
+      display: grid;
+      -ms-grid-columns: 15% auto;
+      grid-template-columns: 15% auto;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 95%;
+      height: 70px;
+      margin: 10px auto; }
+      .wrapper .contacts .user-contact img {
+        width: 50px;
+        height: 50px; }
+    .wrapper .contacts .user-info {
+      border-bottom: solid grey 1px; }
