@@ -1,68 +1,94 @@
 @import 'resets';
 @import 'variables';
 @import 'mixins';
-.wrapper{
-    width: 40%;
-    margin: 40px auto ;
-    box-sizing: border-box;
-    height: 850px;
-    box-shadow: $shadow1;
-    border-radius: 50px;
+body{ 
 
-    .panel{
-        color: white;
-        display: grid;
-        grid-template-columns: fit-content(10%) fit-content(10%) 70% fit-content(10%);
-        padding-top: 20px;
-        margin: $center-box-horizontal;
-        transform:translate(10px, 0%);
-
-        #search{
-            @include btn-round(50px,50px);
-            background-color: white;
+    .wrapper{
+        @include page-dimensions();
+        
+        .panel{
+            color: white;
+            display: grid;
+            grid-template-columns: fit-content(10%) fit-content(10%) 70% fit-content(10%);
+            padding-top: 20px;
+            margin: $center-box-horizontal;
+            transform:translate(10px, 0%);
+            
+            #search{
+                @include btn-round(50px,50px);
+                background-color: white;
+            }
+            
+            #add{
+                @include btn-round(50px, 50px);
+                background-color: white;
+            }
+            #back{
+                @include btn-round(50px,50px);
+                background-color: white;
+            }
+            
+            h1.page-title{
+                margin: $center-box-horizontal;
+                text-align: center;
+                color: $brown;
+                transform: translate(0px, 10px);
+            }
+            
         }
         
-        #add{
-            @include btn-round(50px, 50px);
-            background-color: white;
+        .contacts{
+            width: 90%;
+            margin: $center-box-horizontal;
+            margin-top: 40px;
+            color: black;
+            .user-contact{
+                display: grid;
+                grid-template-columns: 15% auto;
+                box-sizing: border-box;
+                width: 95%;
+                height: 70px;
+                //box-shadow: $shadow2;
+                margin: 10px auto;
+                
+                img{
+                    @include width-height(50px);
+                }
+            }
+            .user-info{
+                border-bottom: solid grey 1px;
+            }
+            
+            
         }
-        #back{
-            @include btn-round(50px,50px);
-            background-color: white;
-        }
-
-        h1.page-title{
-        margin: $center-box-horizontal;
-        text-align: center;
-        color: $brown;
-        transform: translate(0px, 10px);
-        }
-
+        
     }
-
-    .contacts{
-        width: 90%;
-        margin: $center-box-horizontal;
-        margin-top: 40px;
-        color: black;
-        .user-contact{
-            display: grid;
-            grid-template-columns: 15% auto;
-            box-sizing: border-box;
-            width: 95%;
-            height: 70px;
-            //box-shadow: $shadow2;
-            margin: 10px auto;
-
-            img{
-                @include width-height(50px);
+    
+    .add-contacts{
+        @include page-dimensions();
+        form{
+            padding-top: 50px;
+            .contact-search{
+                margin: 0 auto;
+                width: 80%;
+                //background: turquoise;
+                height: 40px;
+                border-radius: 20px; 
+                transition: 0.5s;
+                border: solid grey 1px
+                
+                input{
+                    border: none;
+                    height: 40px;
+                    width: 90%;
+                    font-size: 24px;
+                    outline: none;
+                }
+                &:hover{
+                    box-shadow: rgba(0,0,0,0.16) 0px 2px 6px;
+                }
             }
         }
-        .user-info{
-            border-bottom: solid grey 1px;
-        }
-
         
     }
-
 }

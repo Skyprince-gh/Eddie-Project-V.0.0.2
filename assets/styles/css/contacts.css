@@ -3,7 +3,7 @@
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-.wrapper {
+body .wrapper {
   width: 40%;
   margin: 40px auto;
   -webkit-box-sizing: border-box;
@@ -12,7 +12,7 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
   border-radius: 50px; }
-  .wrapper .panel {
+  body .wrapper .panel {
     color: white;
     display: -ms-grid;
     display: grid;
@@ -23,7 +23,7 @@
     -webkit-transform: translate(10px, 0%);
     -ms-transform: translate(10px, 0%);
     transform: translate(10px, 0%); }
-    .wrapper .panel #search {
+    body .wrapper .panel #search {
       width: 50px;
       height: 50px;
       border-radius: 25px;
@@ -35,7 +35,7 @@
       margin: 5px;
       outline: none;
       background-color: white; }
-    .wrapper .panel #add {
+    body .wrapper .panel #add {
       width: 50px;
       height: 50px;
       border-radius: 25px;
@@ -47,7 +47,7 @@
       margin: 5px;
       outline: none;
       background-color: white; }
-    .wrapper .panel #back {
+    body .wrapper .panel #back {
       width: 50px;
       height: 50px;
       border-radius: 25px;
@@ -59,19 +59,19 @@
       margin: 5px;
       outline: none;
       background-color: white; }
-    .wrapper .panel h1.page-title {
+    body .wrapper .panel h1.page-title {
       margin: 0 auto;
       text-align: center;
       color: #5d585a;
       -webkit-transform: translate(0px, 10px);
       -ms-transform: translate(0px, 10px);
       transform: translate(0px, 10px); }
-  .wrapper .contacts {
+  body .wrapper .contacts {
     width: 90%;
     margin: 0 auto;
     margin-top: 40px;
     color: black; }
-    .wrapper .contacts .user-contact {
+    body .wrapper .contacts .user-contact {
       display: -ms-grid;
       display: grid;
       -ms-grid-columns: 15% auto;
@@ -81,8 +81,37 @@
       width: 95%;
       height: 70px;
       margin: 10px auto; }
-      .wrapper .contacts .user-contact img {
+      body .wrapper .contacts .user-contact img {
         width: 50px;
         height: 50px; }
-    .wrapper .contacts .user-info {
+    body .wrapper .contacts .user-info {
       border-bottom: solid grey 1px; }
+
+body .add-contacts {
+  width: 40%;
+  margin: 40px auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 850px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+  border-radius: 50px; }
+  body .add-contacts form {
+    padding-top: 50px; }
+    body .add-contacts form .contact-search {
+      margin: 0 auto;
+      width: 80%;
+      height: 40px;
+      border-radius: 20px;
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s;
+      transition: 0.5s;
+      border: solid grey 1px input;
+        border-border: none;
+        border-height: 40px;
+        border-width: 90%;
+        border-font-size: 24px;
+        border-outline: none; }
+      body .add-contacts form .contact-search:hover {
+        -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px; }

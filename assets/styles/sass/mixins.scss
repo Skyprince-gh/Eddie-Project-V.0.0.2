@@ -15,3 +15,12 @@
     width: $value;
     height: $value;
 }
+
+@mixin page-dimensions(){
+    width: 40%;
+        margin: 40px auto ;
+        box-sizing: border-box;
+        height: 850px;
+        box-shadow: $shadow1;
+        border-radius: 50px;
+}
