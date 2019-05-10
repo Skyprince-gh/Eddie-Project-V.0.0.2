@@ -4,7 +4,7 @@
 body{ 
 
     .wrapper{
-        @include page-dimensions();
+        @include page-dimensions(850px);
         
         .panel{
             color: white;
@@ -12,7 +12,7 @@ body{
             grid-template-columns: fit-content(10%) fit-content(10%) 70% fit-content(10%);
             padding-top: 20px;
             margin: $center-box-horizontal;
-            transform:translate(10px, 0%);
+            transform:translate(10px, 0%); 
             
             #search{
                 @include btn-round(50px,50px);
@@ -64,8 +64,9 @@ body{
         
     }
     
-    .add-contacts{
-        @include page-dimensions();
+    div.add-contacts{
+        @include page-dimensions(400px);
+        
         form{
             padding-top: 50px;
             .contact-search{
@@ -75,20 +76,38 @@ body{
                 height: 40px;
                 border-radius: 20px; 
                 transition: 0.5s;
-                border: solid grey 1px
+                border: solid $grey 2px;
+                outline: none;
+                padding-left: 20px;
+                padding-top: 5px;
+                box-sizing: border-box;
                 
-                input{
-                    border: none;
-                    height: 40px;
-                    width: 90%;
-                    font-size: 24px;
-                    outline: none;
-                }
                 &:hover{
                     box-shadow: rgba(0,0,0,0.16) 0px 2px 6px;
                 }
+
+                i{
+                    color: $grey;
+                }
             }
+            input{
+                border: none;
+                width: 90%;
+                box-sizing: border-box;
+                outline: none;
+                position: relative;
+                bottom: 5px;
+                margin-left: 10px;
+            }  
         }
         
+    }
+
+    .hide{
+        display: none;
+        background: blue;
+    }
+    .show{
+        display: block;
     }
 }

@@ -87,18 +87,18 @@ body .wrapper {
     body .wrapper .contacts .user-info {
       border-bottom: solid grey 1px; }
 
-body .add-contacts {
+body div.add-contacts {
   width: 40%;
   margin: 40px auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  height: 850px;
+  height: 400px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
   border-radius: 50px; }
-  body .add-contacts form {
+  body div.add-contacts form {
     padding-top: 50px; }
-    body .add-contacts form .contact-search {
+    body div.add-contacts form .contact-search {
       margin: 0 auto;
       width: 80%;
       height: 40px;
@@ -106,12 +106,30 @@ body .add-contacts {
       -webkit-transition: 0.5s;
       -o-transition: 0.5s;
       transition: 0.5s;
-      border: solid grey 1px input;
-        border-border: none;
-        border-height: 40px;
-        border-width: 90%;
-        border-font-size: 24px;
-        border-outline: none; }
-      body .add-contacts form .contact-search:hover {
+      border: solid #DEDEE5 2px;
+      outline: none;
+      padding-left: 20px;
+      padding-top: 5px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box; }
+      body div.add-contacts form .contact-search:hover {
         -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px; }
+      body div.add-contacts form .contact-search i {
+        color: #DEDEE5; }
+    body div.add-contacts form input {
+      border: none;
+      width: 90%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      outline: none;
+      position: relative;
+      bottom: 5px;
+      margin-left: 10px; }
+
+body .hide {
+  display: none;
+  background: blue; }
+
+body .show {
+  display: block; }

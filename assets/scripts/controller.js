@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const firebase = require('./firebase.js');
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
+var expressLogging = require('express-tracking');
 
 // let passData = function(user, cred){
 //     user = user;
@@ -9,6 +10,14 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // }
 
 const controller = function (app) {
+    app.use(bodyParser.urlencoded({
+        limit: "200mb",
+        extended: true
+    }));
+    app.use(bodyParser.json({ limit: "200mb" }));
+
+    //tracking express
+    app.use(expressLogging());
 
     //tracking changes
     firebase.auth.onAuthStateChanged(user => {
@@ -31,15 +40,17 @@ const controller = function (app) {
     });
 
     app.get('/chat', function (req, res) {
+        console.clear();
         //console.log('user credentials: ' , credentials);
         console.log(req.query);
         res.render('chat', { user: req.query });
     })
 
     app.get('/contacts', (req, res) => {
+        console.clear()
         res.render('contacts', { user: req.query });
         console.log('rendered contacts page')
-    })
+    });
 
 
 
@@ -54,7 +65,7 @@ const controller = function (app) {
 
     app.post('/signin', urlencodedParser, (req, res) => {
         console.log('email: ', req.body.email, ' password: ', req.body.password);
-        
+
         firebase.auth.signInWithEmailAndPassword(req.body.email, req.body.password).then(cred => {
             console.log('user id: ', cred.user.uid, '\nuser signed in');
             //redirect user to contacts page if signin is correct
@@ -86,6 +97,7 @@ const controller = function (app) {
                 firebase.firestore.collection('user data').add({
                     accountNo: cred.user.uid,
                     profilePicture: '',
+                    name: req.body.username,
                     email: cred.user.email,
                     contacts: [],
                     conversations: [],
@@ -102,9 +114,33 @@ const controller = function (app) {
         }
     });
 
+    app.post('/search', urlencodedParser, function (req, res) {
+        firebase.firestore.collection('user data').get().then(snapshot => {
+            //search each name in the userdatabase and compare to keystroke
+            let matches = [];
+            snapshot.docs.forEach(doc => {
+                console.log('name is: ', doc.data().name);
+                result = compareName(req.body.keystroke, doc.data().name);
+                if(result){//matches the name given
+                     //add te name to list of matches
+                     matches.push({name: doc.data().name, id: doc.id});
+                }
 
+            })
+            res.send(matches)
+        });
+    });
 
-  
+    function compareName(keystroke, name) {
+        let regex = new RegExp(keystroke, 'gi');
+        if (regex.test(name)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    } 
+
 
 }
 
