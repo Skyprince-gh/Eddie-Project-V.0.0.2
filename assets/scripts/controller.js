@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const firebase = require('./firebase.js');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
-var expressLogging = require('express-tracking');
+
 
 // let passData = function(user, cred){
 //     user = user;
@@ -16,8 +16,7 @@ const controller = function (app) {
     }));
     app.use(bodyParser.json({ limit: "200mb" }));
 
-    //tracking express
-    app.use(expressLogging());
+    
 
     //tracking changes
     firebase.auth.onAuthStateChanged(user => {
@@ -114,22 +113,41 @@ const controller = function (app) {
         }
     });
 
+    //search post
+
     app.post('/search', urlencodedParser, function (req, res) {
         firebase.firestore.collection('user data').get().then(snapshot => {
             //search each name in the userdatabase and compare to keystroke
+            console.log('keystroke: ',req.body.keystroke);
             let matches = [];
             snapshot.docs.forEach(doc => {
                 console.log('name is: ', doc.data().name);
-                result = compareName(req.body.keystroke, doc.data().name);
-                if(result){//matches the name given
-                     //add te name to list of matches
-                     matches.push({name: doc.data().name, id: doc.id});
+                if(req.body.keystroke.length === 0){
+                    res.send([])
+                }
+                else{
+                    result = compareName(req.body.keystroke, doc.data().name);
+                    if(result){//matches the name given
+                         //add te name to list of matches
+                         matches.push({name: doc.data().name, id: doc.id, email: doc.data().email, info: doc.data().info});
+                    }
                 }
 
             })
             res.send(matches)
         });
     });
+
+    // add contact post
+    app.post('/addContact', urlencodedParser, function(req,res){
+        console.log('user ID: ', req.body.userId);
+        console.log('contact ID: ', req.body.contactId);
+        console.log('contact Name: ', req.body.contactName);
+      firebase.firestore.collection('users').doc(req.body.userId).update({
+          contacts: [].push({id: req.body.contactId, name: req.body.contactName}),
+      })
+        
+    })
 
     function compareName(keystroke, name) {
         let regex = new RegExp(keystroke, 'gi');
