@@ -50,6 +50,7 @@ const controller = function (app) {
         res.render('contacts', { user: req.query });
         console.log('rendered contacts page')
     });
+    
 
 
 
@@ -97,9 +98,15 @@ const controller = function (app) {
                     accountNo: cred.user.uid,
                     profilePicture: '',
                     name: req.body.username,
+                    userDataID: "",
                     email: cred.user.email,
                     contacts: [],
                     conversations: [],
+                    info: 'This is my Info',
+                }).then(snapshot=>{
+                    firebase.firestore.collection('user data').doc(snapshot.id).update({
+                        userDataID: snapshot.id,
+                    })
                 });
 
                 //redirect user to contact page
@@ -113,8 +120,7 @@ const controller = function (app) {
         }
     });
 
-    //search post
-
+    //search database for users
     app.post('/search', urlencodedParser, function (req, res) {
         firebase.firestore.collection('user data').get().then(snapshot => {
             //search each name in the userdatabase and compare to keystroke
@@ -140,13 +146,17 @@ const controller = function (app) {
 
     // add contact post
     app.post('/addContact', urlencodedParser, function(req,res){
-        console.log('user ID: ', req.body.userId);
+        //console.log('user ID: ', req.body.userId);
         console.log('contact ID: ', req.body.contactId);
         console.log('contact Name: ', req.body.contactName);
-      firebase.firestore.collection('users').doc(req.body.userId).update({
-          contacts: [].push({id: req.body.contactId, name: req.body.contactName}),
-      })
         
+      firebase.firestore.collection('user data').doc(req.body.contactId).get().then(doc=>{
+          let document = doc.data();
+          console.log(document);
+      })
+    //   update({
+    //     contacts:JSON.stringify({id: req.body.contactId, name: req.body.contactName}),
+    //  })
     })
 
     function compareName(keystroke, name) {

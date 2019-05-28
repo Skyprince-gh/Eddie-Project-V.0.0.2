@@ -15,19 +15,19 @@ body{
             margin: $center-box-horizontal;
             transform:translate(10px, 0%); 
             
-            #search{
+            #search, #add, #back,#settings,#back-to-contacts {
                 @include btn-round(50px,50px);
                 background-color: white;
             }
             
-            #add{
-                @include btn-round(50px, 50px);
-                background-color: white;
-            }
-            #back{
-                @include btn-round(50px,50px);
-                background-color: white;
-            }
+            // #add{
+            //     @include btn-round(50px, 50px);
+            //     background-color: white;
+            // }
+            // #back{
+            //     @include btn-round(50px,50px);
+            //     background-color: white;
+            // }
             
             h1.page-title{
                 margin: $center-box-horizontal;
@@ -186,8 +186,7 @@ body{
             
 
     .hide{
-        display: none;
-        background: blue;
+        display: none;  
     }
     .show{
         display: block;

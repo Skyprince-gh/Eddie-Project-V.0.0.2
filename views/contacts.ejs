@@ -10,56 +10,36 @@
 </head>
 
 <body id=<%= user.uid %>>
-    <div class="wrapper animated fadeIn delay-1s">
+    <div class="show contacts-panel wrapper animated fadeIn delay-1s">
         <div class="panel">
-            <a href="/signin"><button id='back'>Back</button></a>
-            <button id='search'>Search</button>
+            <button id='settings'><i class="material-icons">settings</i></button>
+            <button id='search'><i class="material-icons">search</i></button>
             <h1 class='page-title'>Contacts</h1>
-            <button id='add'>Add</button>
+            <button id='add'><i class="material-icons">add</i></button>
+
         </div>
 
         <div class="contacts">
             <% include partials/user-contact %>
-            <% include partials/user-contact %>
-            <% include partials/user-contact %>
-            <% include partials/user-contact %>
-            <% include partials/user-contact %>
-            <% include partials/user-contact %>
-            <% include partials/user-contact %>
 
         </div>
     </div>
 
-    <div class="add-contacts hide animated">
-        <form action="">
-            <div class="contact-search">
-                <i class="material-icons">search</i>
-                <input type="text">
-            </div>
-        </form>
+    <div class="hide settings wrapper animated">
 
-
-        <ul class="collection">
-
-        </ul>
-
-    </div>
-
-    <div class="hide popup-add-contact">
-        <img src="assets/images/user-picture.jpeg" alt="">
-        <button class="add"><i class="material-icons">add</i></button>
-
-        <div class="contact-info">
-            <h1 class="name">
-                User Name
-            </h1>
-            <p class="email">Email@something.com</p>
-            <p class="info">
-                This user is a user who uses the platform which is supposed
-                to be used. Do you understand?
-            </p>
+        <div class="panel">
+            <button id='back-to-contacts'><i class="material-icons">keyboard_return</i></button>
+            <button id='back-to-contacts'><i class="fas fa-info"></i></button>
+            <h1 class='page-title'>Settings</h1>
+            <button id='back-to-contacts'><i class="material-icons">delete</i></button>
         </div>
+
     </div>
+
+    <%include partials/add-contacts.ejs%>
+    <%include partials/popup-add-contact.ejs%>
+
+
 
     <div class="hide" id="cover"></div>
 

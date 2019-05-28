@@ -1,64 +1,123 @@
 window.onload = function () {
-let body = document.querySelector('body');
-let userId = body.getAttribute('id');
+  let body = document.querySelector('body');
+  let userId = body.getAttribute('id');
+  let addBtn = document.getElementById('add');
+  let settingsBtn = document.getElementById('settings');
+  let settingsPanel = document.querySelector('.settings');
+  let contactsPanel = document.querySelector('.contacts-panel');
+  let backToContactsBtn = document.getElementById('back-to-contacts');
+
+
   //DOM Manipulation
-  let add = document.getElementById('add');
-  add.addEventListener('click', function (e) {
+
+  //WHAT HAPPENS WHEN THE SETTINGS BUTTON IS CLICKED
+  settingsBtn.addEventListener('click', e=>{
     e.preventDefault();
-    //console.log('clicked')
-    e.target.parentElement.parentElement.classList.remove('fadeIn', 'delay-1s');
-    e.target.parentElement.parentElement.classList.add('fadeOutLeft');
-    let addContacts = document.querySelector('.add-contacts');
-    let searchBox = addContacts.querySelector('input');
-    let timer;
-    let collection;
+    e.stopPropagation();
+    
+    if (e.target.nodeName === 'BUTTON'){
+      e.target.parentElement.parentElement.classList.remove('show', 'fadeInLeft', 'fadeOutRight');
+     // e.target.parentElement.parentElement.classList.add('fadeOutRight')
 
-    setTimeout(function () {
-      e.target.parentElement.parentElement.classList.add('hide');
-      addContacts.classList.remove('hide')
-      addContacts.classList.add('fadeInRight', 'show');
-    }, 500);
-    //console.log('classlist: ', e.target.parentElement.parentElement.classList);
+      //hide contacts panel
+      setTimeout(function(){
+        e.target.parentElement.parentElement.classList.add('hide')
 
-    activateTimer = function () {
+        //show settings panel
+        settingsPanel.classList.remove('hide');
+        settingsPanel.classList.add('show');
+      }, 500);
+      
+    }
+  })
+  
+  //WHAT HAPPENS WHEN BACK TO CONTACTS BUTTON IS CLICKED
+  backToContactsBtn.addEventListener('click', e=>{
+    e.preventDefault();
+    e.stopPropagation();
 
-      timer = setTimeout(function () {
-        $.ajax({
-          type: 'POST',
-          url: '/search',
-          data: { keystroke: searchBox.value },
-          success: function (data) {
-            //GET SEARCH DATA AND DISPLAY
-            //console.log('matches: ', data);
+    if(e.target.nodeName === 'BUTTON'){
+      e.target.parentElement.parentElement.classList.remove('show');
+      //e.target.parentElement.parentElement.classList.add('fadeOutRight');
+      
+      //hide settings panel
+      setTimeout(function(){
+        e.target.parentElement.parentElement.classList.add('hide');
 
-            collection = addContacts.querySelector('ul.collection');
-            collection.innerHTML = '';
+        //show contacts panel panel
+        contactsPanel.classList.remove('hide');
+        contactsPanel.classList.add('show');
+        
+      }, 500)
+    }
+  });
 
-            data.forEach(result => {
-              console.log('info: ', result.info);
-              collection.innerHTML += `<li info='${result.info}' email="${result.email}"class="contact" id="${result.id}">${result.name}</li>`;
-            })
+  
+  //WHAT HAPPENS WHEN THE ADD BUTTON IS CLICKED
+  
+  addBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.target.nodeName);
+    if (e.target.nodeName === 'BUTTON') {
+      //fade the contact list out
+      e.target.parentElement.parentElement.classList.remove('fadeIn', 'delay-1s', 'show');
+      e.target.parentElement.parentElement.classList.add('fadeOutLeft');
+
+      //Reveal add contacts panel in few millisecons
+      let addContacts = document.querySelector('.add-contacts');
+      let searchBox = addContacts.querySelector('input');
+      let timer;
+      let collection;
+
+      setTimeout(function () {
+        e.target.parentElement.parentElement.classList.add('hide');
+        addContacts.classList.remove('hide')
+        addContacts.classList.add('fadeInRight', 'show');
+      }, 500);
+      //console.log('classlist: ', e.target.parentElement.parentElement.classList);
 
 
-            contacts = collection.querySelectorAll('li');
+      //WHAT HAPPENS WHEN USER TYPES INTO SEARCH BOX
+      activateTimer = function () {
 
-            //HANDLE CONTACT CLICKS AND DISPLAY INFO
-            contacts.forEach(contact => {
-              contact.addEventListener('click', function (e) {
-                let id = e.target.id;
-                let name = e.target.innerHTML;
-                let email = e.target.getAttribute('email');
-                let info = e.target.getAttribute('info');
+        timer = setTimeout(function () {
+          $.ajax({
+            type: 'POST',
+            url: '/search',
+            data: { keystroke: searchBox.value },
+            success: function (data) {
+              //GET SEARCH DATA AND DISPLAY
+              //console.log('matches: ', data);
 
-                //POPULATE CARD
+              collection = addContacts.querySelector('ul.collection');
+              collection.innerHTML = '';
 
-                popUpAddContact = document.querySelector('.popup-add-contact');
+              data.forEach(result => {
+                console.log('info: ', result.info);
+                collection.innerHTML += `<li info='${result.info}' email="${result.email}"class="contact" id="${result.id}">${result.name}</li>`;
+              })
 
-                popUpAddContact.innerHTML = `
+
+              contacts = collection.querySelectorAll('li');
+
+              //HANDLE CONTACT CLICKS AND DISPLAY INFO
+              contacts.forEach(contact => {
+                contact.addEventListener('click', function (e) {
+                  let id = e.target.id;
+                  let name = e.target.innerHTML;
+                  let email = e.target.getAttribute('email');
+                  let info = e.target.getAttribute('info');
+                  console.log('id: ', id);
+                  //POPULATE CARD
+
+                  popUpAddContact = document.querySelector('.popup-add-contact');
+
+                  popUpAddContact.innerHTML = `
              <img src="assets/images/user-picture.jpeg" alt="">
              <button class="add"><i class="material-icons">add</i></button>
      
-             <div class="contact-info">
+             <div id='${id}' class="contact-info">
                  <h1 class="name">
                      ${name}
                  </h1>
@@ -68,61 +127,63 @@ let userId = body.getAttribute('id');
                  </p>
              </div>
              `;
-                popUpAddContact.classList.remove('hide');
-                popUpAddContact.classList.add('show');
-                cover.classList.remove('hide');
-                cover.classList.add('show');
-                addContacts.classList.remove('show');
-                addContacts.classList.add('hide')
+                  popUpAddContact.classList.remove('hide');
+                  popUpAddContact.classList.add('show');
+                  cover.classList.remove('hide');
+                  cover.classList.add('show');
+                  addContacts.classList.remove('show');
+                  addContacts.classList.add('hide')
 
 
-                //ADD CONTACT
+                  //WHAT HAPPENS WHEN USER CLICK ADD CONTACT BUTTON ON POPUP MENUS ADD CONTACT
 
-                popUpAddContact.addEventListener('click', function(e){
-                  e.preventDefault();
-                  e.stopPropagation();
-                  
-                  //fire Ajax function to send add user to contact list
-                 $.ajax({
-                   url: '/addContact',
-                  type: 'POST',
-                  data: {contactId: id, userId: userId, contactName: name },
-                  success: function(data){
+                  popUpAddContact.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Hello');
+                    //fire Ajax function to send add user to contact list
+                    $.ajax({
+                      url: '/addContact',
+                      type: 'POST',
+                      data: { contactId: id, contactName: name },
+                      success: function (data) {
 
-                  },
-                  error: function(e){
-                    console.log(e)
-                  }
+                      },
+                      error: function (e) {
+                        console.log(e);
+                      }
 
-                 });
-                });
+                    });
+                  });
+                })
               })
-            })
 
 
 
 
-          },
-          error: function (err) {
+            },
+            error: function (err) {
 
-          }
-        });
+            }
+          });
 
-      }, 1000)
-    }
-
-
-    searchBox.addEventListener('keyup', function () {
-      if (searchBox.value.length === 0) {
-        collection.innerHTML = '';
+        }, 500) //waiting period 500 milliseconds before search is activated
       }
-      clearTimeout(timer);
-      console.log('timer cleard')
-      activateTimer();
 
-    })
+
+      searchBox.addEventListener('keyup', function () {
+        if (searchBox.value.length === 0) {
+          collection.innerHTML = '';
+        }
+        clearTimeout(timer);
+        console.log('timer cleard')
+        activateTimer();
+
+      })
+    }
     //inject data into a drop down list
   })
+
 
 }
   //Watch node js videos on how to use setTimeOut and waitforseconds

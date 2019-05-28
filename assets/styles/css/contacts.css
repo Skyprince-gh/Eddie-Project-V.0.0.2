@@ -25,31 +25,7 @@ body {
       -webkit-transform: translate(10px, 0%);
       -ms-transform: translate(10px, 0%);
       transform: translate(10px, 0%); }
-      body .wrapper .panel #search {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        border: none;
-        -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin: 5px;
-        outline: none;
-        background-color: white; }
-      body .wrapper .panel #add {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        border: none;
-        -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin: 5px;
-        outline: none;
-        background-color: white; }
-      body .wrapper .panel #back {
+      body .wrapper .panel #search, body .wrapper .panel #add, body .wrapper .panel #back, body .wrapper .panel #settings, body .wrapper .panel #back-to-contacts {
         width: 50px;
         height: 50px;
         border-radius: 25px;
@@ -202,7 +178,6 @@ body {
       width: 400px;
       margin: 0 auto; }
   body .hide {
-    display: none;
-    background: blue; }
+    display: none; }
   body .show {
     display: block; }
