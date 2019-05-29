@@ -6,6 +6,7 @@ window.onload = function () {
   let settingsPanel = document.querySelector('.settings');
   let contactsPanel = document.querySelector('.contacts-panel');
   let backToContactsBtn = document.getElementById('back-to-contacts');
+  let searchBackToContacts = document.getElementById('search-back-to-contacts');
 
 
   //DOM Manipulation
@@ -26,9 +27,17 @@ window.onload = function () {
         //show settings panel
         settingsPanel.classList.remove('hide');
         settingsPanel.classList.add('show');
+        
       }, 500);
       
     }
+  })
+
+
+
+  //WHAT HAPPENS WHEN THE BACK TO CONTACTS BUTTON IS CLICKED FROM SEARCH
+  searchBackToContacts.addContacts('click',e=>{
+
   })
   
   //WHAT HAPPENS WHEN BACK TO CONTACTS BUTTON IS CLICKED
@@ -147,7 +156,12 @@ window.onload = function () {
                       type: 'POST',
                       data: { contactId: id, contactName: name },
                       success: function (data) {
-
+                        popUpAddContact.classList.remove('show');
+                        popUpAddContact.classList.add('hide');
+                        cover.classList.remove('show');
+                        cover.classList.add('hide');
+                        addContacts.classList.remove('hide');
+                        addContacts.classList.add('show');
                       },
                       error: function (e) {
                         console.log(e);

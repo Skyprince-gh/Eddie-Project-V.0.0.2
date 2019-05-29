@@ -48,7 +48,7 @@ const controller = function (app) {
     app.get('/contacts', (req, res) => {
         console.clear()
         res.render('contacts', { user: req.query });
-        console.log('rendered contacts page')
+        console.log('rendered contacts page');
     });
     
 
@@ -149,14 +149,17 @@ const controller = function (app) {
         //console.log('user ID: ', req.body.userId);
         console.log('contact ID: ', req.body.contactId);
         console.log('contact Name: ', req.body.contactName);
-        
+       
+        //get the entire document and then update with the contact details
       firebase.firestore.collection('user data').doc(req.body.contactId).get().then(doc=>{
           let document = doc.data();
-          console.log(document);
+          document.contacts.push({id:req.body.contactId, name: req.body.contactName});
+          //send the document back to firebase and replace the old one.
+          firebase.firestore.collection('user data').doc(req.body.contactId).update(document);
+
+          res.send({});
       })
-    //   update({
-    //     contacts:JSON.stringify({id: req.body.contactId, name: req.body.contactName}),
-    //  })
+  
     })
 
     function compareName(keystroke, name) {
