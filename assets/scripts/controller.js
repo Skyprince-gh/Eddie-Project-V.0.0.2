@@ -51,17 +51,25 @@ const controller = function (app) {
         console.log('rendered contacts page');
     });
     
-
-
-
+    
+    
+    
     //Signin requests
-
+    
     app.get('/signin', (req, res) => {
         firebase.auth.signOut().then(() => {
             res.render('signin', { user: req.query });
         });
     });
+    
+    app.post('/getContacts',urlencodedParser, (req,res)=>{
+        console.clear()
+        console.log('uid :', req.body.accountNo);
 
+        firebase.firestore.collection('user data').where('accountNo', '==', req.body.accountNo).get().then(snapshot=>{
+           console.log(snapshot.docs[0].data());
+        });
+    })
 
     app.post('/signin', urlencodedParser, (req, res) => {
         console.log('email: ', req.body.email, ' password: ', req.body.password);

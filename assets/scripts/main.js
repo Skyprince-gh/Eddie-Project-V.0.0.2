@@ -10,7 +10,23 @@ window.onload = function () {
   let addContacts = document.querySelector('.add-contacts');
 
   //DOM Manipulation
+  console.log(body.id);
+  //load the contacts list
+  loadContactsList = function(){
+    let contacts = contactsPanel.querySelector('.contacts');
+    $.ajax({
+      url: '/getContacts',
+      type: 'POST',
+      data: {accountNo: userId},
+      success: function(data){
+        
+      },
+      error: function(err){
 
+      }
+
+    })
+  }
   //WHAT HAPPENS WHEN THE SETTINGS BUTTON IS CLICKED
   settingsBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -170,6 +186,15 @@ window.onload = function () {
                     e.stopPropagation();
                     console.log('Hello');
 
+                    //reveal search box
+                    popUpAddContact.classList.remove('show');
+                    popUpAddContact.classList.add('hide');
+                    cover.classList.remove('show');
+                    cover.classList.add('hide');
+                    addContacts.classList.remove('hide');
+                    addContacts.classList.add('show');
+                    loadContactsList();
+
                     //clear search-box
                     searchBox.value = '';
                     //clear list
@@ -180,12 +205,7 @@ window.onload = function () {
                       type: 'POST',
                       data: { contactId: id, contactName: name },
                       success: function (data) {
-                        popUpAddContact.classList.remove('show');
-                        popUpAddContact.classList.add('hide');
-                        cover.classList.remove('show');
-                        cover.classList.add('hide');
-                        addContacts.classList.remove('hide');
-                        addContacts.classList.add('show');
+                       
                       },
                       error: function (e) {
                         console.log(e);
