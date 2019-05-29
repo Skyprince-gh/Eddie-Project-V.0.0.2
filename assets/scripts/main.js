@@ -7,63 +7,82 @@ window.onload = function () {
   let contactsPanel = document.querySelector('.contacts-panel');
   let backToContactsBtn = document.getElementById('back-to-contacts');
   let searchBackToContacts = document.getElementById('search-back-to-contacts');
-
+  let addContacts = document.querySelector('.add-contacts');
 
   //DOM Manipulation
 
   //WHAT HAPPENS WHEN THE SETTINGS BUTTON IS CLICKED
-  settingsBtn.addEventListener('click', e=>{
+  settingsBtn.addEventListener('click', e => {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (e.target.nodeName === 'BUTTON'){
+
+    if (e.target.nodeName === 'BUTTON') {
       e.target.parentElement.parentElement.classList.remove('show', 'fadeInLeft', 'fadeOutRight');
-     // e.target.parentElement.parentElement.classList.add('fadeOutRight')
+      // e.target.parentElement.parentElement.classList.add('fadeOutRight')
 
       //hide contacts panel
-      setTimeout(function(){
+      setTimeout(function () {
         e.target.parentElement.parentElement.classList.add('hide')
 
         //show settings panel
         settingsPanel.classList.remove('hide');
         settingsPanel.classList.add('show');
-        
+
       }, 500);
-      
+
     }
   })
 
 
 
   //WHAT HAPPENS WHEN THE BACK TO CONTACTS BUTTON IS CLICKED FROM SEARCH
-  searchBackToContacts.addContacts('click',e=>{
+  searchBackToContacts.addEventListener('click', function (e) {
 
-  })
-  
+    if (e.target.nodeName === 'BUTTON') {
+      e.stopPropagation();
+      e.preventDefault();
+      addContacts.classList.remove('show');
+      addContacts.classList.add('fadeOutRight')
+     
+
+      //Hide search Panel
+      setTimeout(function(){      
+        addContacts.classList.add('hide');
+        contactsPanel.classList.remove('hide', 'fadeOutLeft');
+        contactsPanel.classList.add('show', 'fadeIn');
+      }, 500);
+
+    }
+  });
+
+
+
+
+
   //WHAT HAPPENS WHEN BACK TO CONTACTS BUTTON IS CLICKED
-  backToContactsBtn.addEventListener('click', e=>{
+  backToContactsBtn.addEventListener('click', e => {
     e.preventDefault();
     e.stopPropagation();
 
-    if(e.target.nodeName === 'BUTTON'){
+    if (e.target.nodeName === 'BUTTON') {
       e.target.parentElement.parentElement.classList.remove('show');
       //e.target.parentElement.parentElement.classList.add('fadeOutRight');
-      
+
       //hide settings panel
-      setTimeout(function(){
+      setTimeout(function () {
         e.target.parentElement.parentElement.classList.add('hide');
 
         //show contacts panel panel
         contactsPanel.classList.remove('hide');
         contactsPanel.classList.add('show');
-        
+
       }, 500)
     }
   });
 
-  
+
   //WHAT HAPPENS WHEN THE ADD BUTTON IS CLICKED
-  
+
   addBtn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -74,14 +93,14 @@ window.onload = function () {
       e.target.parentElement.parentElement.classList.add('fadeOutLeft');
 
       //Reveal add contacts panel in few millisecons
-      let addContacts = document.querySelector('.add-contacts');
+
       let searchBox = addContacts.querySelector('input');
       let timer;
       let collection;
 
       setTimeout(function () {
         e.target.parentElement.parentElement.classList.add('hide');
-        addContacts.classList.remove('hide')
+        addContacts.classList.remove('hide', 'fadeOutRight')
         addContacts.classList.add('fadeInRight', 'show');
       }, 500);
       //console.log('classlist: ', e.target.parentElement.parentElement.classList);
@@ -118,8 +137,8 @@ window.onload = function () {
                   let email = e.target.getAttribute('email');
                   let info = e.target.getAttribute('info');
                   console.log('id: ', id);
+                  
                   //POPULATE CARD
-
                   popUpAddContact = document.querySelector('.popup-add-contact');
 
                   popUpAddContact.innerHTML = `
@@ -150,6 +169,11 @@ window.onload = function () {
                     e.preventDefault();
                     e.stopPropagation();
                     console.log('Hello');
+
+                    //clear search-box
+                    searchBox.value = '';
+                    //clear list
+                    collection.innerHTML = '';
                     //fire Ajax function to send add user to contact list
                     $.ajax({
                       url: '/addContact',
