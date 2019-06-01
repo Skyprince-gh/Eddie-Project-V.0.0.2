@@ -1,6 +1,17 @@
 const bodyParser = require('body-parser');
 const firebase = require('./firebase.js');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
+var path = require('path');
+var multer = require('multer');
+
+
+//storage setup
+storage = multer.diskStorage({
+    destination: './assets/images/profile-picture',
+    filename: function(req, file, callback){
+        callback(null, file.fieldname + '-' + path.extname(file.originalname));
+    }
+})
 
 
 // let passData = function(user, cred){
