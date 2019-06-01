@@ -67,7 +67,11 @@ const controller = function (app) {
         console.log('uid :', req.body.accountNo);
 
         firebase.firestore.collection('user data').where('accountNo', '==', req.body.accountNo).get().then(snapshot=>{
-           console.log(snapshot.docs[0].data());
+            let contacts= [];
+           snapshot.docs[0].data().contacts.forEach(contact=>{
+                contacts.push(contact);
+           });
+           res.send({contacts: contacts});
         });
     })
 
@@ -148,7 +152,7 @@ const controller = function (app) {
                 }
 
             })
-            res.send(matches)
+            res.send(matches);
         });
     });
 

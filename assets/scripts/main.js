@@ -8,18 +8,33 @@ window.onload = function () {
   let backToContactsBtn = document.getElementById('back-to-contacts');
   let searchBackToContacts = document.getElementById('search-back-to-contacts');
   let addContacts = document.querySelector('.add-contacts');
-
-  //DOM Manipulation
-  console.log(body.id);
-  //load the contacts list
+ 
   loadContactsList = function(){
+
+    // Settings Panel 
+   let addImage = document.querySelector('.add-image');
+
+   addImage.addEventListener('change', function(e){
+     let file = e.target.files[0];
+     console.log(file);
+   })
+
     let contacts = contactsPanel.querySelector('.contacts');
     $.ajax({
       url: '/getContacts',
       type: 'POST',
       data: {accountNo: userId},
       success: function(data){
-        
+        contacts.innerHTML = '';
+        data.contacts.forEach(contact=>{
+          contacts.innerHTML += `<div class="user-contact animated fadeInUp delay-2s">
+          <img src="assets/images/pp.png" alt="${contact.name}" class="user-image">
+          <div class="user-info">
+              <h3>${contact.name}</h3>
+              <p>Contact Info</p>
+          </div>
+      </div> `
+        })
       },
       error: function(err){
 
@@ -27,6 +42,14 @@ window.onload = function () {
 
     })
   }
+  
+  loadContactsList();
+
+ 
+  //DOM Manipulation
+  console.log(body.id);
+  //load the contacts list
+  
   //WHAT HAPPENS WHEN THE SETTINGS BUTTON IS CLICKED
   settingsBtn.addEventListener('click', e => {
     e.preventDefault();

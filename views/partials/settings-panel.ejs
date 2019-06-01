@@ -1,0 +1,34 @@
+<div class="hide settings wrapper animated">
+    <div class="panel">
+        <button id='back-to-contacts'><i class="material-icons">arrow_back</i></button>
+        <button id='back-to-contacts'><i class="fas fa-info"></i></button>
+        <h1 class='page-title'>Settings</h1>
+        <button id='back-to-contacts'><i class="material-icons">delete</i></button>
+    </div>
+
+    <form class="image" method="POST" action="/change-image" enctype="multipart/form-data">
+        <img id="profile-picture" src="/assets//images/user-picture.jpeg" alt="">
+        
+            <input class=" add-image" name="image" id="image" type="file" value="add">
+            <label for="image"><i class="material-icons">create</i></label>
+            
+      
+    </form>
+
+    <form class="hide" id="user-info" action="POST" action="/change-user-info">
+    <textarea name="userInfo" cols="30" rows="10"> </textarea>
+
+    <button><i class="material-icons">create</i></button>
+    </form>
+
+    <div id="info-display">
+        <h1>User Info</h1>
+
+        <p>This is the info about the user that you need to use to describe the user the way the user is supposed to be described
+        </p>
+
+        <button id="add-user-info"><i class="material-icons">
+            create
+        </i></button>
+    </div>
+</div>

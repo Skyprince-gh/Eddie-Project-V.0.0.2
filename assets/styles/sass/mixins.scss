@@ -1,20 +1,25 @@
 @import 'variables';
 
-@mixin btn-round($width, $height){
-    width: $width;
-    height: $height;
-    border-radius: ($width / 2);
+@mixin btn-round($val){
+    width: $val;
+    height: $val;
+    border-radius: ($val / 2);
     border: none;
     box-shadow: $shadow2;
     box-sizing: border-box;
     margin: 5px;
     outline: none;
+    background: white;
 }
 
 @mixin width-height($value){
     width: $value;
     height: $value;
 }
+@mixin width-height2($width, $height){
+    width: $width;
+    height: $height;
+} 
 
 @mixin page-dimensions($val){
     width: 40%;

@@ -4,8 +4,102 @@
 body{ 
     font-family: roboto,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+    #add-user-info,#change-image,#search, #add, #back,#settings,#back-to-contacts {
+        @include btn-round(50px);
+       
+    }
+
+    #info-display{
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 300px;
+        color: $grey2;
+
+        button{
+            float: right;
+        }
+    }
+    
     .wrapper{
         @include page-dimensions(850px);
+
+        .image{ //this is for the image form
+            width: 90%; 
+            margin: 0 auto;
+            margin-top: 80px;
+            z-index: -2;
+            #profile-picture{
+                @include width-height(250px);
+                border-radius: 125px;
+                overflow: hidden;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                
+            }
+
+            .add-image{
+                   @include width-height(auto);                   
+                   overflow: hidden;
+                   display: block;
+                   margin: 0 auto;
+                   opacity: 0;
+            }
+            .add-image + label{
+                position: absolute;              
+                left: 50%;
+                transform: translate(50%, 150px);
+                z-index: 5;
+                @include btn-round(80px);
+                box-sizing: border-box;
+
+                i{
+                    font-size: 30px;
+                    box-sizing: border-box;
+                    margin: 0 auto;
+                    @include width-height(100%); 
+                    text-align: center;
+                    padding: 20px;
+                }
+
+            }
+
+            
+
+        }
+        form#user-info{
+            width: 90%;
+            margin: 0 auto;
+            height: 300px;
+            box-shadow: $shadow1;      
+            position: relative;
+            top: 100px;
+            z-index: 5;
+            border-radius: 30px;  
+
+            textarea{
+                width: 90%;
+                height: 80%;
+                margin: 0 auto;
+                display: block;
+                border: solid $grey2 1px;
+                border-radius: 30px;
+
+            }
+
+            button{
+                @include btn-round(50px);
+                float: right;
+                transform: translate(-5px,0)
+            }
+        }
+                
+    }
+
+     
         
         .panel{
             color: white;
@@ -15,10 +109,7 @@ body{
             margin: $center-box-horizontal;
             transform:translate(10px, 0%); 
             
-            #search, #add, #back,#settings,#back-to-contacts {
-                @include btn-round(50px,50px);
-                background-color: white; 
-            }
+           
             
             // #add{
             //     @include btn-round(50px, 50px);
@@ -37,6 +128,8 @@ body{
             }
             
         }
+
+
         
         .contacts{
             width: 90%;
@@ -67,7 +160,7 @@ body{
     div.add-contacts{
         @include page-dimensions(400px);
         button#search-back-to-contacts{
-            @include btn-round(50px, 50px);
+            @include btn-round(50px);
             background-color: white;
             position: absolute;
             top: 35px;
@@ -175,7 +268,7 @@ body{
                 }
 
                 button{
-                    @include btn-round(50px, 50px);
+                    @include btn-round(50px);
                     position: absolute;
                     left: 80%;
                     top: 45%;
@@ -199,4 +292,3 @@ body{
     .show{
         display: block;
     }
-}
