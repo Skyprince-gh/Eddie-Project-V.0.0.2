@@ -26,7 +26,7 @@ body{
     .wrapper{
         @include page-dimensions(850px);
 
-        .image{ //this is for the image form
+        div.profile-image{ //this is for the image form
             width: 90%; 
             margin: 0 auto;
             margin-top: 80px;

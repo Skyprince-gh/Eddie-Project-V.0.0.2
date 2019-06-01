@@ -8,15 +8,18 @@ window.onload = function () {
   let backToContactsBtn = document.getElementById('back-to-contacts');
   let searchBackToContacts = document.getElementById('search-back-to-contacts');
   let addContacts = document.querySelector('.add-contacts');
- 
+  let imageForm = document.querySelector('.image');
   loadContactsList = function(){
 
     // Settings Panel 
    let addImage = document.querySelector('.add-image');
 
    addImage.addEventListener('change', function(e){
+     e.preventDefault();
+     e.stopPropagation();
      let file = e.target.files[0];
-     console.log(file);
+     imageForm.submit();
+     
    })
 
     let contacts = contactsPanel.querySelector('.contacts');

@@ -38,12 +38,12 @@ body {
     -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
     box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
     border-radius: 50px; }
-    body .wrapper .image {
+    body .wrapper div.profile-image {
       width: 90%;
       margin: 0 auto;
       margin-top: 80px;
       z-index: -2; }
-      body .wrapper .image #profile-picture {
+      body .wrapper div.profile-image #profile-picture {
         width: 250px;
         height: 250px;
         border-radius: 125px;
@@ -53,14 +53,14 @@ body {
         -webkit-transform: translate(-50%, 0);
         -ms-transform: translate(-50%, 0);
         transform: translate(-50%, 0); }
-      body .wrapper .image .add-image {
+      body .wrapper div.profile-image .add-image {
         width: auto;
         height: auto;
         overflow: hidden;
         display: block;
         margin: 0 auto;
         opacity: 0; }
-      body .wrapper .image .add-image + label {
+      body .wrapper div.profile-image .add-image + label {
         position: absolute;
         left: 50%;
         -webkit-transform: translate(50%, 150px);
@@ -79,7 +79,7 @@ body {
         outline: none;
         background: white;
         box-sizing: border-box; }
-        body .wrapper .image .add-image + label i {
+        body .wrapper div.profile-image .add-image + label i {
           font-size: 30px;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
