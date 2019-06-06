@@ -9,22 +9,22 @@
     <div class="profile-image">
         <img id="profile-picture" src="/assets//images/user-picture.jpeg" alt="">
         
-        <form class="image" method="POST" action="/change-image" enctype="multipart/form-data">        
+        <form class="image" method="POST" action="/change-profile-picture" enctype="multipart/form-data">        
                 <input class=" add-image" name="image" id="image" type="file" value="add">
                 <label for="image"><i class="material-icons">create</i></label>         
         </form>
     </div> 
 
-    <form class="hide" id="user-info" action="POST" action="/change-user-info">
-    <textarea name="userInfo" cols="30" rows="10"> </textarea>
+    <form class="hide" id="user-info">
+    <textarea id="text-area" name="userInfo" cols="30" rows="10"> </textarea>
 
-    <button><i class="material-icons">create</i></button>
+    <button id="submit-user-info"><i class="material-icons">create</i></button>
     </form>
 
     <div id="info-display">
         <h1>User Info</h1>
 
-        <p>This is the info about the user that you need to use to describe the user the way the user is supposed to be described
+        <p id="current-info">This is the info about the user that you need to use to describe the user the way the user is supposed to be described
         </p>
 
         <button id="add-user-info"><i class="material-icons">

@@ -9,18 +9,8 @@ window.onload = function () {
   let searchBackToContacts = document.getElementById('search-back-to-contacts');
   let addContacts = document.querySelector('.add-contacts');
   let imageForm = document.querySelector('.image');
-  loadContactsList = function(){
-
-    // Settings Panel 
-   let addImage = document.querySelector('.add-image');
-
-   addImage.addEventListener('change', function(e){
-     e.preventDefault();
-     e.stopPropagation();
-     let file = e.target.files[0];
-     imageForm.submit();
-     
-   })
+  
+  loadContactsList = function(){ 
 
     let contacts = contactsPanel.querySelector('.contacts');
     $.ajax({
@@ -28,15 +18,18 @@ window.onload = function () {
       type: 'POST',
       data: {accountNo: userId},
       success: function(data){
+        console.log('contacts loaded' );
+        
         contacts.innerHTML = '';
         data.contacts.forEach(contact=>{
-          contacts.innerHTML += `<div class="user-contact animated fadeInUp delay-2s">
-          <img src="assets/images/pp.png" alt="${contact.name}" class="user-image">
-          <div class="user-info">
-              <h3>${contact.name}</h3>
-              <p>Contact Info</p>
-          </div>
-      </div> `
+          console.log('contacts: ',contact);
+      //     contacts.innerHTML += `<div class="user-contact animated fadeInUp delay-2s">
+      //     <img src="assets/images/pp.png" alt="${contact.name}" class="user-image">
+      //     <div class="user-info">
+      //         <h3>${contact.name}</h3>
+      //         <p>Contact Info</p>
+      //     </div>
+      // </div> `
         })
       },
       error: function(err){
@@ -48,6 +41,10 @@ window.onload = function () {
   
   loadContactsList();
 
+  //ADD PROFILE IMAGE
+
+
+
  
   //DOM Manipulation
   console.log(body.id);
@@ -57,6 +54,19 @@ window.onload = function () {
   settingsBtn.addEventListener('click', e => {
     e.preventDefault();
     e.stopPropagation();
+    
+    $.ajax({
+      type: 'POST',
+      url: '/get-user-info',
+      data: {id: body.id},
+      success: function(data){
+          currentInfo.innerHTML = data
+      },
+      error: function(err){
+          console.log(err)
+      }
+  });
+  
 
     if (e.target.nodeName === 'BUTTON') {
       e.target.parentElement.parentElement.classList.remove('show', 'fadeInLeft', 'fadeOutRight');
@@ -164,8 +174,8 @@ window.onload = function () {
               collection.innerHTML = '';
 
               data.forEach(result => {
-                console.log('info: ', result.info);
-                collection.innerHTML += `<li info='${result.info}' email="${result.email}"class="contact" id="${result.id}">${result.name}</li>`;
+                console.log('result' , result);
+                collection.innerHTML += `<li info='${result.info}' email="${result.email}"class="contact" id="${result.id}" picture="${result.picture}">${result.name}</li>`;
               })
 
 
@@ -178,13 +188,14 @@ window.onload = function () {
                   let name = e.target.innerHTML;
                   let email = e.target.getAttribute('email');
                   let info = e.target.getAttribute('info');
+                  let picture = e.target.getAttribute('picture')
                   console.log('id: ', id);
                   
                   //POPULATE CARD
                   popUpAddContact = document.querySelector('.popup-add-contact');
 
                   popUpAddContact.innerHTML = `
-             <img src="assets/images/user-picture.jpeg" alt="">
+             <img src="${picture}" alt="">
              <button class="add"><i class="material-icons">add</i></button>
      
              <div id='${id}' class="contact-info">

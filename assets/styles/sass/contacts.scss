@@ -3,7 +3,7 @@
 @import 'mixins';
 body{ 
     font-family: roboto,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    background: $grey2;
     #add-user-info,#change-image,#search, #add, #back,#settings,#back-to-contacts {
         @include btn-round(50px);
        
@@ -17,6 +17,7 @@ body{
         transform: translate(-50%, 0);
         width: 300px;
         color: $grey2;
+        box-sizing: border-box;
 
         button{
             float: right;
@@ -25,7 +26,7 @@ body{
     
     .wrapper{
         @include page-dimensions(850px);
-
+        background: white;
         div.profile-image{ //this is for the image form
             width: 90%; 
             margin: 0 auto;
@@ -66,6 +67,7 @@ body{
                 }
 
             }
+           
 
             
 
@@ -85,9 +87,16 @@ body{
                 height: 80%;
                 margin: 0 auto;
                 display: block;
-                border: solid $grey2 1px;
+                //border: solid $grey2 1px;
+                border: none;
                 border-radius: 30px;
-
+                padding: 20px;
+                outline: none;
+                resize: none;
+                ::-webkit-scrollbar{
+                    display: none;
+                }
+                
             }
 
             button{
@@ -97,7 +106,7 @@ body{
             }
         }
                 
-    }
+    } 
 
      
         
@@ -159,6 +168,7 @@ body{
     
     div.add-contacts{
         @include page-dimensions(400px);
+        background-color: white;
         button#search-back-to-contacts{
             @include btn-round(50px);
             background-color: white;

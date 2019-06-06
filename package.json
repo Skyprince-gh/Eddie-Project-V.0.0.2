@@ -13,6 +13,7 @@
   "author": "Edwin Edmund Assan",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^2.5.0",
     "all": "0.0.0",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
